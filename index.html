@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="귀엽고 개성있는 휴대폰 케이스를 소개하는 웹사이트입니다. 다양한 젤리/하드/에폭시 케이스를 만나보세요!" />
+  <meta name="keywords" content="휴대폰 케이스, 젤리 케이스, 하드 케이스, 에폭시 케이스, 귀여운 폰케이스, 트렌디 폰케이스" />
+  <meta name="author" content="너와 친구의 이름 또는 브랜드명" />
+  <title>귀여운 케이스 구경하기</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Pretendard', sans-serif;
+      background-color: #fff;
+      color: #333;
+      display: flex;
+    }
+    nav {
+      width: 200px;
+      padding: 1rem;
+      background-color: #f8f8f8;
+      border-right: 1px solid #ddd;
+      box-sizing: border-box;
+    }
+    nav h2 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+    nav ul li {
+      margin-bottom: 0.5rem;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 1rem;
+      display: block;
+      padding: 0.3rem;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    nav ul li a:hover {
+      background-color: #e0e0e0;
+    }
+    main {
+      flex-grow: 1;
+      padding: 1rem;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    input[type="text"] {
+      display: block;
+      margin: 0 auto 1.5rem;
+      padding: 0.5rem 1rem;
+      width: 80%;
+      border: 1px solid #ccc;
+      border-radius: 999px;
+      font-size: 1rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+      padding: 1rem;
+    }
+    .card {
+      background: #f9f9f9;
+      border-radius: 1rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      overflow: hidden;
+      text-align: center;
+      padding: 0.5rem;
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+    }
+    .card h3 {
+      font-size: 1rem;
+      margin: 0.5rem 0;
+    }
+    .card a {
+      display: inline-block;
+      margin-top: 0.3rem;
+      padding: 0.3rem 0.7rem;
+      background: #ffc0cb;
+      color: #000;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+
+  nav {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  nav ul {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 0.5rem;
+    margin: 0;
+  }
+
+  nav ul li {
+    margin-right: 1rem;
+  }
+
+  nav h2 {
+    display: none;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  input[type="text"] {
+    width: 90%;
+  }
+}
+  
+    .source {
+      font-size: 12px;
+      color: #888;
+      text-align: center;
+      margin-top: 4px;
+    }
+
+</style>
+</head>
+<body>
+  <nav>
+    <h2>카테고리</h2>
+    <ul id="categoryList">
+      <li><a href="#" data-category="all">전체</a></li>
+      <li><a href="#" data-category="귀여운 케이스">귀여운 케이스</a></li>
+      <li><a href="#" data-category="유행하는 밈 케이스">유행하는 밈 케이스</a></li>
+      <li><a href="#" data-category="게임 케이스">게임 케이스</a></li>
+      <li><a href="#" data-category="무난한 케이스">무난한 케이스</a></li>
+      <li><a href="#" data-category="만화 케이스">만화 케이스</a></li>
+      <li><a href="#" data-category="풍경 케이스">풍경 케이스</a></li>
+      <li><a href="#" data-category="화려한 케이스">화려한 케이스</a></li>
+      <li><a href="#" data-category="사랑 케이스">사랑 케이스</a></li>
+    </ul>
+  </nav>
+  <main>
+    
+<header>귀여운 케이스 구경해보세요!</header>
+<p style="text-align: center; font-weight: bold; color: red; margin-top: -1rem; margin-bottom: 1.5rem;">
+  ※ 이 페이지는 애드픽 파트너로서 광고 수익이 포함되어 있으며,<br>
+  사용된 이미지의 저작권은 각 브랜드 및 판매자에게 있습니다.</p>
+
+    <input type="text" id="search" placeholder="케이스 이름을 검색해보세요!" />
+    <div class="grid" id="productGrid"></div>
+  </main>
+
+  <script>
+    const products = [
+     { name: "젤리 최강좌", link: "https://bitl.bz/oOORz3", img: "https://i.ibb.co/cc4Nwx6S/hhds.jpg", category: "유행하는 밈 케이스" },
+    { name: "그라데이션 바다 친구들", link: "https://bitl.bz/2PUyAG", img: "https://i.ibb.co/GvX79qNt/awd.jpg", category: "귀여운 케이스" },
+    { name: "젤리 절대자", link: "https://bitl.bz/vjKxOj", img: "https://i.ibb.co/C3HYjRMn/d.jpg", category: "유행하는 밈 케이스" },
+    { name: "하드 게임냥", link: "https://bitl.bz/kH2mqQ", img: "https://i.ibb.co/CsQxjbXy/x.jpg", category: "게임 케이스" },
+    { name: "그라데이션 클로버낙서", link: "https://bitl.bz/1c9uxu", img: "https://i.ibb.co/sJ2BQ8fC/sefdsaef.jpg", category: "귀여운 케이스" },
+    { name: "젤리 누가이겨", link: "https://bitl.bz/dCRoCb", img: "https://i.ibb.co/5JVYCvK/c.jpg", category: "귀여운 케이스" },
+    { name: "젤리 빼곰멍", link: "https://bitl.bz/TQ7ClT", img: "https://i.ibb.co/PGwYD0MY/b.jpg", category: "귀여운 케이스" },
+    { name: "젤리 집으로튀어", link: "https://bitl.bz/7WfjXC", img: "https://i.ibb.co/HLy9bqMr/ff.jpg", category: "무난한 케이스" },
+    { name: "하드 꾸러기", link: "https://bitl.bz/913Omz", img: "https://i.ibb.co/cXwvHWfG/r.jpg", category: "만화 케이스" },
+    { name: "반구톡+젤리 하트하트", link: "https://bitl.bz/DMn0fF", img: "https://i.ibb.co/DDZykfBm/gg.jpg", category: "귀여운 케이스" },
+    { name: "젤리 행복댕이", link: "https://bitl.bz/NKm4n0", img: "https://i.ibb.co/PGCQCwB9/rr.jpg", category: "귀여운 케이스" },
+    { name: "에폭시 구름숲", link: "https://bitl.bz/NAwmzv", img: "https://i.ibb.co/mF2y6pR6/tt.jpg", category: "풍경 케이스" },
+    { name: "반투명 삐약쿼카", link: "https://bitl.bz/jedCT0", img: "https://i.ibb.co/bjQB9Pnz/hh.jpg", category: "귀여운 케이스" },
+    { name: "반투명 금붕어항", link: "https://bitl.bz/8GTLK8", img: "https://i.ibb.co/qM8d8Yvt/yy.jpg", category: "귀여운 케이스" },
+    { name: "젤리 컬러스케치", link: "https://bitl.bz/sF2ha0", img: "https://i.ibb.co/HLBQ4pBL/asswwwwwww.jpg", category: "귀여운 케이스" },
+    { name: "젤리 기존쎄", link: "https://bitl.bz/BSd9N0", img: "https://i.ibb.co/sJ3bPGPF/awdsawd.jpg", category: "귀여운 케이스" },
+    { name: "젤리 기존쎄", link: "https://bitl.bz/VTO4bh", img: "https://i.ibb.co/d4t7BKnV/awdsawdsawdsawdsawdsa.jpg", category: "귀여운 케이스" },
+    { name: "젤리 리본야옹", link: "https://bitl.bz/hA7xFv", img: "https://i.ibb.co/DfdZWGrY/rtgg.jpg", category: "귀여운 케이스" },
+    { name: "탱크카드젤리 너혹시", link: "https://bitl.bz/2q3L06", img: "https://i.ibb.co/TDtbQWs1/awdszzzz.jpg", category: "게임 케이스" },
+    { name: "탱크카드젤리 킁킁멍냥", link: "https://bitl.bz/nS26EM", img: "https://i.ibb.co/hJN9KHWD/awdsawggg.jpg", category: "게임 케이스" },
+    { name: "탱크카드젤리 힙숭이", link: "https://bitl.bz/P47F76", img: "https://i.ibb.co/Z12x10qb/ggasdwww.jpg", category: "게임 케이스" },
+    { name: "하드 낙서프렌즈", link: "https://bitl.bz/cKmjuB", img: "https://i.ibb.co/ch7FBx28/gawdszzz.jpg", category: "만화 케이스" },
+    { name: "젤리 행운을 빌어", link: "https://bitl.bz/Q713Rh", img: "https://i.ibb.co/B23t379k/gghhhh.jpg", category: "귀여운 케이스" },
+    { name: "에폭시 새콤달콤", link: "https://bitl.bz/dwneyP", img: "https://i.ibb.co/ccJsZ3x3/kwhdjkhsawd.jpg", category: "화려한 케이스" },
+    { name: "에폭시 고양이패턴", link: "https://bitl.bz/39mC5Z", img: "https://i.ibb.co/0RNKQj7v/ffff.jpg", category: "화려한 케이스" },
+    { name: "젤리 비어있음", link: "https://bitl.bz/9WbHWK", img: "https://i.ibb.co/bjKTzpcR/gawdszzzzdd.jpg", category: "귀여운 케이스" },
+    { name: "에폭시 그라하트", link: "https://bitl.bz/Mo38wY", img: "https://i.ibb.co/27JSR3ZB/awdsawdssfffff.jpg", category: "풍경 케이스" },
+    { name: "에폭시 좋아하는것", link: "https://bitl.bz/INjRxQ", img: "https://i.ibb.co/MDwLTqDQ/lpls.jpg", category: "사랑 케이스" },
+    { name: "젤리 구해조멍", link: "https://bitl.bz/uvTEN0", img: "https://i.ibb.co/kC8rfLJ/glspawdsa.jpg", category: "귀여운 케이스" },
+    { name: "젤리 이아캣패턴", link: "https://bitl.bz/mL2Mg6", img: "https://i.ibb.co/svxyc6wD/klspwd.jpg", category: "귀여운 케이스" },
+    { name: "젤리 구해조햄", link: "https://bitl.bz/5qk30W", img: "https://i.ibb.co/b5cmYBRB/awdnshjawdsawd.jpg", category: "귀여운 케이스" },
+    { name: "젤리 미니두들", link: "https://bitl.bz/kRtJ6p", img: "https://i.ibb.co/W4kFmTvB/awdsawdsawdsawdsawdsawdsawd.jpg", category: "귀여운 케이스" },
+    { name: "젤리 인간욕구", link: "https://bitl.bz/R0ht6k", img: "https://i.ibb.co/Nn10vt0H/lpawds.jpg", category: "유행하는 밈 케이스" },
+    { name: "젤리 컬러고양이", link: "https://bitl.bz/0MrnDL", img: "https://i.ibb.co/fz1Q7569/AWDSAWDS.jpg", category: "귀여운 케이스" }
+  ];
+
+products.push(
+  { name: "젤리 인간욕구", link: "https://bitl.bz/R0ht6k", img: "https://i.ibb.co/Nn10vt0H/lpawds.jpg", category: "귀여운 케이스" },
+  { name: "젤리 컬러고양이", link: "https://bitl.bz/0MrnDL", img: "https://i.ibb.co/fz1Q7569/AWDSAWDS.jpg", category: "귀여운 케이스" },
+  { name: "반투명 블러클로버", link: "https://bitl.bz/G3JcxF", img: "https://i.ibb.co/8nxPz1sS/gg.jpg", category: "귀여운 케이스" },
+  { name: "반투명 큐티즈", link: "https://bitl.bz/udCGm9", img: "https://i.ibb.co/zjLNtN1/hha.jpg", category: "귀여운 케이스" },
+  { name: "젤리 달려냥", link: "http://m.casemario.com/goods/goods_view.php?goodsNo=1000007345", img: "https://i.ibb.co/prjWgp2D/ghawd.jpg", category: "귀여운 케이스" },
+  { name: "탱크카드젤리 무직라이프", link: "https://bitl.bz/cgGQse", img: "https://i.ibb.co/BVkXByDv/thg.jpg", category: "귀여운 케이스" },
+  { name: "탱크카드젤리 찰칵", link: "https://bitl.bz/7VZ6eg", img: "https://i.ibb.co/b5y6xpcd/gfhgh.jpg", category: "귀여운 케이스" },
+  { name: "탱크카드젤리 뮤직냥", link: "https://bitl.bz/S9b6Ww", img: "https://i.ibb.co/4n9wFdS1/gsdawd.jpg", category: "귀여운 케이스" },
+  { name: "탱크카드젤리 조랭이", link: "https://bitl.bz/r4x67Y", img: "https://i.ibb.co/xKdJH0bt/dlpawd.jpg", category: "귀여운 케이스" },
+  { name: "에폭시 크로버리", link: "https://bitl.bz/USjDbP", img: "https://i.ibb.co/fGymgWJk/awdszzz.jpg", category: "화려한 케이스" },
+  { name: "하드 발차기", link: "https://bitl.bz/DmbaNd", img: "https://i.ibb.co/RG6dpVXB/fgazz.jpg", category: "게임 케이스" },
+  { name: "탱크카드젤리 리틀베이비", link: "https://bitl.bz/KzfYuT", img: "https://i.ibb.co/gMLKWQ4x/ghawdsawd.jpg", category: "귀여운 케이스" },
+  { name: "젤리 행운내꺼", link: "https://bitl.bz/jdsuEc", img: "https://i.ibb.co/F4RCFc16/gawds.jpg", category: "귀여운 케이스" },
+  { name: "젤리 미니어항", link: "https://bitl.bz/uw6myM", img: "https://i.ibb.co/TMPqtHkB/awdsawdsawd.jpg", category: "귀여운 케이스" },
+  { name: "에폭시 호피리본", link: "https://bitl.bz/xnQ0Q5", img: "https://i.ibb.co/7JpNQnft/gawdsawdsawd.jpg", category: "화려한 케이스" },
+  { name: "에폭시 블랙공주", link: "https://bitl.bz/wdPEXR", img: "https://i.ibb.co/XfjWcVzQ/ldsawd.jpg", category: "화려한 케이스" },
+  { name: "젤리 불꽃냥이", link: "https://bitl.bz/4oeztI", img: "https://i.ibb.co/R4CWm9H1/ffawds.jpg", category: "귀여운 케이스" },
+  { name: "에폭시 반짝냥", link: "https://bitl.bz/IP0KI4", img: "https://i.ibb.co/jZ8G07C4/awdsawdsawdsawd.jpg", category: "화려한 케이스" },
+  { name: "젤리 반짝토끼", link: "https://bitl.bz/MoYF9y", img: "https://i.ibb.co/V0Tb7BHt/fdospaefd.jpg", category: "귀여운 케이스" },
+  { name: "젤리 구경중", link: "https://bitl.bz/49pmbd", img: "https://i.ibb.co/HLwcC1dc/awdsaccc.jpg", category: "귀여운 케이스" },
+  { name: "젤라 해와달", link: "https://bitl.bz/Mt8Acu", img: "https://i.ibb.co/DHhSyf9t/fgawds.jpg", category: "귀여운 케이스" },
+  { name: "젤리 커플티냥", link: "https://bitl.bz/1MvixV", img: "https://i.ibb.co/MDBxt00v/awdsssssss.jpg", category: "귀여운 케이스" },
+  { name: "젤리 뽀짝한하루", link: "https://bitl.bz/DjgpT7", img: "https://i.ibb.co/xKHvxXR4/awdszzzsaw.jpg", category: "귀여운 케이스" }
+);
+
+    const grid = document.getElementById("productGrid");
+    const search = document.getElementById("search");
+    const categoryLinks = document.querySelectorAll('#categoryList a');
+
+    function renderProducts(list) {
+      grid.innerHTML = "";
+      list.forEach(p => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <img src="${p.img}" alt="${p.name}" />
+          <h3>${p.name}</h3>
+          <a href="${p.link}" target="_blank">구매하러가기</a>
+<p class=\"source\">출처: 에드픽</p>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function filterProducts(keyword = "", category = "all") {
+      const filtered = products.filter(p => {
+        const inCategory = category === "all" || p.category === category;
+        const inSearch = p.name.toLowerCase().includes(keyword.toLowerCase()) || p.category.toLowerCase().includes(keyword.toLowerCase());
+        return inCategory && inSearch;
+      });
+      renderProducts(filtered);
+    }
+
+    search.addEventListener("input", e => {
+      const keyword = e.target.value;
+      const selectedCategory = document.querySelector('#categoryList a.active')?.dataset.category || "all";
+      filterProducts(keyword, selectedCategory);
+    });
+
+    categoryLinks.forEach(link => {
+      link.addEventListener("click", e => {
+        e.preventDefault();
+        categoryLinks.forEach(l => l.classList.remove("active"));
+        link.classList.add("active");
+        const keyword = search.value;
+        const selectedCategory = link.dataset.category;
+        filterProducts(keyword, selectedCategory);
+      });
+    });
+
+    // 기본 출력
+    renderProducts(products);
+  </script>
+</body>
+</html>
+
+ 
+
+
